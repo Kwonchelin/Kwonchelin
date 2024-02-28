@@ -1,11 +1,13 @@
-package fisa.edu.Kwonchelin.entity.store;
+package fisa.edu.Kwonchelin.entity.storeImage;
 
+import fisa.edu.Kwonchelin.entity.store.Store;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.web.JsonPath;
 
 import java.util.Date;
 
@@ -13,43 +15,18 @@ import java.util.Date;
 @NoArgsConstructor
 @Getter
 @Entity
-public class Store {
+public class StoreImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "store_image_id")
+    private Long storeImageId;
+
+    @JoinColumn(name = "store_id")
+    @ManyToOne(targetEntity = Store.class, fetch = FetchType.LAZY)
     private Long storeId;
 
-    @Column(nullable = false)
-    private String name;
-
-    @Column(nullable = false)
-    private String category;
-
-    @Column(nullable = false)
-    private String address;
-
-    @Column
+    @Column(name = "store_picture_url")
     private String storePictureUrl;
-
-    @Column(nullable = false)
-    private String phone;
-
-    @Column(nullable = false)
-    private String content;
-
-    @Column
-    private float rating;
-
-    @Column
-    private int dibsCount;
-
-    @Column
-    private int reviewCount;
-
-    @Column
-    private String operationHours;
-
-    @Column
-    private String closedDays;
 
     @CreatedDate
     @Column(name = "created_date", nullable = false)

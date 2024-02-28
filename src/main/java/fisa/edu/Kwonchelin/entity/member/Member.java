@@ -17,7 +17,8 @@ public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    @Column(name = "member_id")
+    private Long memberId;
 
     @Column(unique = true, nullable = false)
     private String email;
@@ -31,16 +32,16 @@ public class Member {
     @Column(nullable = false)
     private String phone;
 
-    @Enumerated(EnumType.STRING)
+//    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private String role;
 
     @CreatedDate
-    @Column(nullable = false)
-    private Date createDate;
+    @Column(name = "created_date", nullable = false)
+    private Date createdDate;
 
     @LastModifiedDate
-    @Column(nullable = false)
+    @Column(name = "modified_date", nullable = false)
     private Date modifiedDate;
 
     @Column(nullable = false)

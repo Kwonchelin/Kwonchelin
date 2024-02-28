@@ -1,5 +1,6 @@
-package fisa.edu.Kwonchelin.entity.store;
+package fisa.edu.Kwonchelin.entity.dibs;
 
+import fisa.edu.Kwonchelin.entity.store.Store;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,43 +14,15 @@ import java.util.Date;
 @NoArgsConstructor
 @Getter
 @Entity
-public class Store {
+public class Dibs {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long storeId;
+    @Column(name = "user_id")
+    private Long userId;
 
-    @Column(nullable = false)
-    private String name;
-
-    @Column(nullable = false)
-    private String category;
-
-    @Column(nullable = false)
-    private String address;
-
-    @Column
-    private String storePictureUrl;
-
-    @Column(nullable = false)
-    private String phone;
-
-    @Column(nullable = false)
-    private String content;
-
-    @Column
-    private float rating;
-
-    @Column
-    private int dibsCount;
-
-    @Column
-    private int reviewCount;
-
-    @Column
-    private String operationHours;
-
-    @Column
-    private String closedDays;
+    @JoinColumn(name = "store_id")
+    @ManyToOne(targetEntity = Store.class, fetch = FetchType.LAZY)
+    private Store storeId;
 
     @CreatedDate
     @Column(name = "created_date", nullable = false)

@@ -1,5 +1,6 @@
-package fisa.edu.Kwonchelin.entity.store;
+package fisa.edu.Kwonchelin.entity.reviewImage;
 
+import fisa.edu.Kwonchelin.entity.review.Review;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,43 +14,18 @@ import java.util.Date;
 @NoArgsConstructor
 @Getter
 @Entity
-public class Store {
+public class ReviewImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long storeId;
+    @Column(name = "menu_image_id")
+    private Long reviewImageId;
 
-    @Column(nullable = false)
-    private String name;
+    @JoinColumn(name = "review_id")
+    @ManyToOne(targetEntity = Review.class, fetch = FetchType.LAZY)
+    private Review reviewId;
 
-    @Column(nullable = false)
-    private String category;
-
-    @Column(nullable = false)
-    private String address;
-
-    @Column
-    private String storePictureUrl;
-
-    @Column(nullable = false)
-    private String phone;
-
-    @Column(nullable = false)
-    private String content;
-
-    @Column
-    private float rating;
-
-    @Column
-    private int dibsCount;
-
-    @Column
-    private int reviewCount;
-
-    @Column
-    private String operationHours;
-
-    @Column
-    private String closedDays;
+    @Column(name = "review_picture_url")
+    private String reviewPictureUrl;
 
     @CreatedDate
     @Column(name = "created_date", nullable = false)

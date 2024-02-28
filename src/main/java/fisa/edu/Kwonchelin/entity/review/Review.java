@@ -1,5 +1,8 @@
 package fisa.edu.Kwonchelin.entity.review;
 
+import fisa.edu.Kwonchelin.entity.member.Member;
+import fisa.edu.Kwonchelin.entity.menu.Menu;
+import fisa.edu.Kwonchelin.entity.store.Store;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,19 +20,20 @@ public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "review_id")
     private Long reviewId;
 
-    @Column
-    @ManyToOne
-    private Long userId;
+    @JoinColumn(name = "member_id")
+    @ManyToOne(targetEntity = Member.class, fetch = FetchType.LAZY)
+    private Member memberId;
 
-    @Column
-    @ManyToOne
-    private Long storeId;
+    @JoinColumn(name = "store_id")
+    @ManyToOne(targetEntity = Store.class, fetch = FetchType.LAZY)
+    private Store storeId;
 
-    @Column
-    @ManyToOne
-    private Long menuId;
+    @JoinColumn(name = "menu_id")
+    @ManyToOne(targetEntity = Menu.class, fetch = FetchType.LAZY)
+    private Menu menuId;
 
     @Column(nullable = false)
     private Integer rating;
@@ -37,15 +41,15 @@ public class Review {
     @Column
     private String content;
 
-    @Column
+    @Column(name = "review_picture_url")
     private String reviewPictureUrl;
 
     @CreatedDate
-    @Column(nullable = false)
-    private Date createDate;
+    @Column(name = "created_date", nullable = false)
+    private Date createdDate;
 
     @LastModifiedDate
-    @Column(nullable = false)
+    @Column(name = "modified_date", nullable = false)
     private Date modifiedDate;
 
     @Column(nullable = false)

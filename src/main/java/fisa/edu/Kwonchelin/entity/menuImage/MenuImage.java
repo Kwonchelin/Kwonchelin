@@ -1,5 +1,6 @@
-package fisa.edu.Kwonchelin.entity.store;
+package fisa.edu.Kwonchelin.entity.menuImage;
 
+import fisa.edu.Kwonchelin.entity.menu.Menu;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,43 +14,18 @@ import java.util.Date;
 @NoArgsConstructor
 @Getter
 @Entity
-public class Store {
+public class MenuImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long storeId;
+    @Column(name = "menu_image_id")
+    private Long menuImageId;
 
-    @Column(nullable = false)
-    private String name;
+    @JoinColumn(name = "menu_id")
+    @ManyToOne(targetEntity = Menu.class, fetch = FetchType.LAZY)
+    private Menu menuId;
 
-    @Column(nullable = false)
-    private String category;
-
-    @Column(nullable = false)
-    private String address;
-
-    @Column
-    private String storePictureUrl;
-
-    @Column(nullable = false)
-    private String phone;
-
-    @Column(nullable = false)
-    private String content;
-
-    @Column
-    private float rating;
-
-    @Column
-    private int dibsCount;
-
-    @Column
-    private int reviewCount;
-
-    @Column
-    private String operationHours;
-
-    @Column
-    private String closedDays;
+    @Column(name = "menu_picture_url")
+    private String menuPictureUrl;
 
     @CreatedDate
     @Column(name = "created_date", nullable = false)
