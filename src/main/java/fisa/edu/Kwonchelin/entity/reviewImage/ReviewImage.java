@@ -13,16 +13,16 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Entity
+@Entity(name = "review_image")
 public class ReviewImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "menu_image_id")
+    @Column(name = "review_image_id")
     private Long reviewImageId;
 
     @JoinColumn(name = "review_id")
     @ManyToOne(targetEntity = Review.class, fetch = FetchType.LAZY)
-    private Review reviewId;
+    private Review review;
 
     @Column(name = "review_picture_url")
     private String reviewPictureUrl;

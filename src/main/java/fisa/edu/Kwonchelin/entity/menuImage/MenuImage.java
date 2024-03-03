@@ -13,7 +13,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Entity
+@Entity(name = "menu_image")
 public class MenuImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +22,7 @@ public class MenuImage {
 
     @JoinColumn(name = "menu_id")
     @ManyToOne(targetEntity = Menu.class, fetch = FetchType.LAZY)
-    private Menu menuId;
+    private Menu menu;
 
     @Column(name = "menu_picture_url")
     private String menuPictureUrl;

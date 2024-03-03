@@ -17,7 +17,6 @@ import java.util.Date;
 @Getter
 @Entity
 public class Review {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "review_id")
@@ -25,15 +24,15 @@ public class Review {
 
     @JoinColumn(name = "member_id")
     @ManyToOne(targetEntity = Member.class, fetch = FetchType.LAZY)
-    private Member memberId;
+    private Member member;
 
     @JoinColumn(name = "store_id")
     @ManyToOne(targetEntity = Store.class, fetch = FetchType.LAZY)
-    private Store storeId;
+    private Store store;
 
     @JoinColumn(name = "menu_id")
     @ManyToOne(targetEntity = Menu.class, fetch = FetchType.LAZY)
-    private Menu menuId;
+    private Menu menu;
 
     @Column(nullable = false)
     private Integer rating;

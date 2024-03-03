@@ -1,6 +1,6 @@
-package fisa.edu.Kwonchelin.entity.menuOption;
+package fisa.edu.Kwonchelin.entity.dib;
 
-import fisa.edu.Kwonchelin.entity.menu.Menu;
+import fisa.edu.Kwonchelin.entity.member.Member;
 import fisa.edu.Kwonchelin.entity.store.Store;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -14,29 +14,20 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Entity
-public class MenuOption {
+@Entity(name = "dib")
+public class Dib {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "menu_option_id")
-    private Long menuOptionId;
+    @Column(name = "dib_id")
+    private Long dibId;
 
-    @JoinColumn(name = "menu_id")
-    @ManyToOne(targetEntity = Menu.class, fetch = FetchType.LAZY)
-    private Menu menuId;
+    @JoinColumn(name = "member_id")
+    @ManyToOne(targetEntity = Store.class, fetch = FetchType.LAZY)
+    private Member member;
 
     @JoinColumn(name = "store_id")
     @ManyToOne(targetEntity = Store.class, fetch = FetchType.LAZY)
-    private Menu storeId;
-
-    @Column
-    private Long option;
-
-    @Column
-    private Long content;
-
-    @Column
-    private int price;
+    private Store store;
 
     @CreatedDate
     @Column(name = "created_date", nullable = false)

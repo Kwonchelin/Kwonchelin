@@ -14,7 +14,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Entity
+@Entity(name = "store_image")
 public class StoreImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +23,7 @@ public class StoreImage {
 
     @JoinColumn(name = "store_id")
     @ManyToOne(targetEntity = Store.class, fetch = FetchType.LAZY)
-    private Long storeId;
+    private Store store;
 
     @Column(name = "store_picture_url")
     private String storePictureUrl;

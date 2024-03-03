@@ -15,7 +15,6 @@ import java.util.Date;
 @Getter
 @Entity
 public class Menu {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "menu_id")
@@ -23,15 +22,15 @@ public class Menu {
 
     @JoinColumn(name = "store_id")
     @ManyToOne(targetEntity = Store.class, fetch = FetchType.LAZY)
-    private Store storeId;
+    private Store store;
 
     @Column
     private String category;
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
-    @Column
+    @Column(nullable = false)
     private int price;
 
     @Column(name = "menu_picture_url")
