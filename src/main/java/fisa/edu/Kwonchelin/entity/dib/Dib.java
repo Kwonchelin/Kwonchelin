@@ -1,5 +1,7 @@
-package fisa.edu.Kwonchelin.entity.member;
+package fisa.edu.Kwonchelin.entity.dib;
 
+import fisa.edu.Kwonchelin.entity.member.Member;
+import fisa.edu.Kwonchelin.entity.store.Store;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,28 +14,20 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Entity
-public class Member {
+@Entity(name = "dib")
+public class Dib {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "member_id")
-    private Long memberId;
+    @Column(name = "dib_id")
+    private Long dibId;
 
-    @Column(unique = true, nullable = false)
-    private String email;
+    @JoinColumn(name = "member_id")
+    @ManyToOne(targetEntity = Store.class, fetch = FetchType.LAZY)
+    private Member member;
 
-    @Column(nullable = false, length = 20)
-    private String password;
-
-    @Column(nullable = false)
-    private String nickname;
-
-    @Column(nullable = false)
-    private String phone;
-
-//    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private String role;
+    @JoinColumn(name = "store_id")
+    @ManyToOne(targetEntity = Store.class, fetch = FetchType.LAZY)
+    private Store store;
 
     @CreatedDate
     @Column(name = "created_date", nullable = false)

@@ -36,31 +36,29 @@ public class Store {
     @Column(nullable = false)
     private String content;
 
-    @Column
-    private float rating;
+    @Column(name = "rating_aver")
+    private float ratingAver;
 
-    @Column
+    @Column(name = "dibs_count")
     private int dibsCount;
 
-    @Column
+    @Column(name = "review_count")
     private int reviewCount;
 
-    @Column
+    @Column(name = "operation_hours")
     private String operationHours;
 
-    @Column
+    @Column(name = "closed_days")
     private String closedDays;
 
     @CreatedDate
-    @Column(nullable = false)
-    private Date createDate;
+    @Column(name = "created_date", nullable = false)
+    private Date createdDate;
 
     @LastModifiedDate
-    @Column(nullable = false)
+    @Column(name = "modified_date", nullable = false)
     private Date modifiedDate;
 
     @Column(nullable = false)
     private String status;
-
-
 }

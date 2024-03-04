@@ -1,5 +1,6 @@
-package fisa.edu.Kwonchelin.entity.member;
+package fisa.edu.Kwonchelin.entity.menuImage;
 
+import fisa.edu.Kwonchelin.entity.menu.Menu;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,28 +13,19 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Entity
-public class Member {
+@Entity(name = "menu_image")
+public class MenuImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "member_id")
-    private Long memberId;
+    @Column(name = "menu_image_id")
+    private Long menuImageId;
 
-    @Column(unique = true, nullable = false)
-    private String email;
+    @JoinColumn(name = "menu_id")
+    @ManyToOne(targetEntity = Menu.class, fetch = FetchType.LAZY)
+    private Menu menu;
 
-    @Column(nullable = false, length = 20)
-    private String password;
-
-    @Column(nullable = false)
-    private String nickname;
-
-    @Column(nullable = false)
-    private String phone;
-
-//    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private String role;
+    @Column(name = "menu_picture_url")
+    private String menuPictureUrl;
 
     @CreatedDate
     @Column(name = "created_date", nullable = false)

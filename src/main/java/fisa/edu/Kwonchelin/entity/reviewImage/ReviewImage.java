@@ -1,5 +1,6 @@
-package fisa.edu.Kwonchelin.entity.member;
+package fisa.edu.Kwonchelin.entity.reviewImage;
 
+import fisa.edu.Kwonchelin.entity.review.Review;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,28 +13,19 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Entity
-public class Member {
+@Entity(name = "review_image")
+public class ReviewImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "member_id")
-    private Long memberId;
+    @Column(name = "review_image_id")
+    private Long reviewImageId;
 
-    @Column(unique = true, nullable = false)
-    private String email;
+    @JoinColumn(name = "review_id")
+    @ManyToOne(targetEntity = Review.class, fetch = FetchType.LAZY)
+    private Review review;
 
-    @Column(nullable = false, length = 20)
-    private String password;
-
-    @Column(nullable = false)
-    private String nickname;
-
-    @Column(nullable = false)
-    private String phone;
-
-//    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private String role;
+    @Column(name = "review_picture_url")
+    private String reviewPictureUrl;
 
     @CreatedDate
     @Column(name = "created_date", nullable = false)

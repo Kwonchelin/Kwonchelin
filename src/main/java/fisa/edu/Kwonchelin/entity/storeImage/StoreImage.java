@@ -1,39 +1,32 @@
-package fisa.edu.Kwonchelin.entity.member;
+package fisa.edu.Kwonchelin.entity.storeImage;
 
+import fisa.edu.Kwonchelin.entity.store.Store;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.web.JsonPath;
 
 import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Entity
-public class Member {
+@Entity(name = "store_image")
+public class StoreImage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "member_id")
-    private Long memberId;
+    @Column(name = "store_image_id")
+    private Long storeImageId;
 
-    @Column(unique = true, nullable = false)
-    private String email;
+    @JoinColumn(name = "store_id")
+    @ManyToOne(targetEntity = Store.class, fetch = FetchType.LAZY)
+    private Store store;
 
-    @Column(nullable = false, length = 20)
-    private String password;
-
-    @Column(nullable = false)
-    private String nickname;
-
-    @Column(nullable = false)
-    private String phone;
-
-//    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private String role;
+    @Column(name = "store_picture_url")
+    private String storePictureUrl;
 
     @CreatedDate
     @Column(name = "created_date", nullable = false)
